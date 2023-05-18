@@ -40,7 +40,7 @@ class Passaro:
 
     #METODOS
     def pular(self):
-        self.velocidade = -11.5
+        self.velocidade = -10.5
         self.tempo = 0
         self.altura = self.y
 
@@ -152,7 +152,7 @@ class Chao:
         self.x2 -= self.VELOCIDADE
 
         if self.x1 + self.LARGURA < 0:
-            self.x1 = self.x1 + self.LARGURA
+            self.x1 = self.x2 + self.LARGURA
         if self.x2 + self.LARGURA < 0:
             self.x2 = self.x1 + self.LARGURA
 
@@ -208,7 +208,7 @@ def main():
             for i, passaro in enumerate(passaros):
                 if cano.colidir(passaro):
                     passaros.pop(i)
-                    pygame.quit()
+                    main()
 
                 if not cano.passou and passaro.x > cano.x:
                     cano.passou = True
@@ -226,7 +226,7 @@ def main():
         for i, passaro in enumerate(passaros):
             if (passaro.y + passaro.imagem.get_height()) > chao.y or passaro.y < 0:
                     passaros.pop(i)
-                    pygame.quit()
+                    main()
 
 
         desenhar_tela(tela, passaros, canos, chao, pontos)
